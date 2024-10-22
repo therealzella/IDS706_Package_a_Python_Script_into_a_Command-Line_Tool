@@ -43,8 +43,10 @@ if __name__ == "__main__":
     try:
         NUMBER = 5  # Renamed to UPPER_CASE to follow constant naming convention
         FACTORIAL_RESULT = factorial(NUMBER)  # Renamed variable to avoid redefinition
+
+        # Split the long print statement across two lines
         print(
-            f"The factorial of {NUMBER} is {FACTORIAL_RESULT}"  # Break long line
+            f"The factorial of {NUMBER} is {FACTORIAL_RESULT}"
         )
 
         # Store result in database
