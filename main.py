@@ -32,8 +32,11 @@ def connect_and_store_result(number, factorial_result):
         number INTEGER PRIMARY KEY,
         result INTEGER
     )''')
-    # Insert factorial result into table
-    cursor.execute('INSERT OR REPLACE INTO factorials (number, result) VALUES (?, ?)', (number, factorial_result))
+    # Insert factorial result into table (split long line)
+    cursor.execute(
+        'INSERT OR REPLACE INTO factorials (number, result) VALUES (?, ?)', 
+        (number, factorial_result)
+    )
     conn.commit()
     conn.close()
 
@@ -50,4 +53,3 @@ if __name__ == "__main__":
         connect_and_store_result(NUMBER, FACTORIAL_RESULT)
     except ValueError as e:
         print(e)
-
