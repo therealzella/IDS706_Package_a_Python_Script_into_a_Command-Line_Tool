@@ -1,6 +1,6 @@
-# IDS706-python-template
+# IDS706_Package_a_Python_Script_into_a_Command-Line_Tool
 
-This is a template repository for the IDS706 course's 1st-week assignment.
+This is a repository for the assignment: IDS706_Package_a_Python_Script_into_a_Command-Line_Tool
 
 ![CI](https://github.com/therealzella/IDS706-python-github-template/actions/workflows/ci.yml/badge.svg)
 
