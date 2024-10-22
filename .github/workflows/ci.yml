@@ -8,7 +8,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-      
+
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
@@ -27,7 +27,18 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
+    - name: Lint with pylint
+      run: |
+        pylint main.py
+
+    - name: Format with black
+      run: |
+        black --check .
+
     - name: Test with pytest
       run: |
-        pip install pytest
         pytest
+
+    - name: Measure coverage with pytest-cov
+      run: |
+        pytest --cov=.
