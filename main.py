@@ -12,7 +12,7 @@ def factorial(number):
     """
     if number < 0:
         raise ValueError("Factorial is not defined for negative numbers.")
-    if number in {0, 1}:  # Changed from `if number == 0 or number == 1`
+    if number in {0, 1}:
         return 1
     factorial_result = 1
     for i in range(2, number + 1):
@@ -32,7 +32,6 @@ def connect_and_store_result(number, factorial_result):
         number INTEGER PRIMARY KEY,
         result INTEGER
     )''')
-
     # Insert factorial result into table
     cursor.execute('INSERT OR REPLACE INTO factorials (number, result) VALUES (?, ?)', (number, factorial_result))
     conn.commit()
@@ -43,13 +42,12 @@ if __name__ == "__main__":
     try:
         NUMBER = 5  # Renamed to UPPER_CASE to follow constant naming convention
         FACTORIAL_RESULT = factorial(NUMBER)  # Renamed variable to avoid redefinition
-
-        # Split the long print statement across two lines
+        # Split long line into two
         print(
             f"The factorial of {NUMBER} is {FACTORIAL_RESULT}"
         )
-
         # Store result in database
         connect_and_store_result(NUMBER, FACTORIAL_RESULT)
     except ValueError as e:
         print(e)
+
