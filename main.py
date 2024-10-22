@@ -34,7 +34,7 @@ def connect_and_store_result(number, factorial_result):
     )''')
     # Insert factorial result into table (split long line)
     cursor.execute(
-        'INSERT OR REPLACE INTO factorials (number, result) VALUES (?, ?)', 
+        'INSERT OR REPLACE INTO factorials (number, result) VALUES (?, ?)',
         (number, factorial_result)
     )
     conn.commit()
