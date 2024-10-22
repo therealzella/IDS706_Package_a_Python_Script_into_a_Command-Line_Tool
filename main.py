@@ -1,26 +1,31 @@
+"""
+This module contains functions to calculate the factorial of a number
+and store the result in an SQLite database.
+"""
+
 import sqlite3
 
-def factorial(n):
+def factorial(number):
     """
-    Calculate the factorial of a non-negative integer n.
-    Raise a ValueError if n is negative.
+    Calculate the factorial of a non-negative integer `number`.
+    Raise a ValueError if `number` is negative.
     """
-    if n < 0:
+    if number < 0:
         raise ValueError("Factorial is not defined for negative numbers.")
-    if n == 0 or n == 1:
+    if number == 0 or number == 1:
         return 1
-    result = 1
-    for i in range(2, n + 1):
-        result *= i
-    return result
+    factorial_result = 1
+    for i in range(2, number + 1):
+        factorial_result *= i
+    return factorial_result
 
-def connect_and_store_result(n, result):
+
+def connect_and_store_result(number, factorial_result):
     """
     Connect to SQLite database and store the factorial result.
     """
     conn = sqlite3.connect('factorials.db')
     cursor = conn.cursor()
-    
     # Create table if it doesn't exist
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS factorials (
@@ -29,17 +34,19 @@ def connect_and_store_result(n, result):
     )''')
 
     # Insert factorial result into table
-    cursor.execute('INSERT OR REPLACE INTO factorials (number, result) VALUES (?, ?)', (n, result))
+    cursor.execute('INSERT OR REPLACE INTO factorials (number, result) VALUES (?, ?)', (number, factorial_result))
     conn.commit()
     conn.close()
 
+
 if __name__ == "__main__":
     try:
-        number = 5
-        result = factorial(number)
-        print(f"The factorial of {number} is {result}")
-        
+        NUMBER = 5  # Renamed to UPPER_CASE to follow constant naming convention
+        FACTORIAL_RESULT = factorial(NUMBER)  # Renamed variable to avoid redefinition
+        print(f"The factorial of {NUMBER} is {FACTORIAL_RESULT}")
+
         # Store result in database
-        connect_and_store_result(number, result)
+        connect_and_store_result(NUMBER, FACTORIAL_RESULT)
     except ValueError as e:
         print(e)
+
