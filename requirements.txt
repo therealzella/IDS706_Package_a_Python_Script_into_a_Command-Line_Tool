@@ -7,3 +7,8 @@ pylint == 2.15.3       ## for linting Python code (used in the lint target)
 
 # web
 fastapi == 0.85.0      ## web framework (if relevant to project)
+
+# databases (if using MySQL, MongoDB, or SQLAlchemy)
+pymysql == 1.0.3       ## MySQL support
+pymongo == 4.0.2       ## MongoDB support
+SQLAlchemy == 1.4.44   ## ORM for SQL databases (optional)
